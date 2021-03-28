@@ -23,5 +23,15 @@ export class AuthService {
 
   login( usuario: UsuarioModel ) {}
 
-  nuevoUsuario( usuario: UsuarioModel ) {}
+  nuevoUsuario( usuario: UsuarioModel ) {
+    const authData = {
+      ...usuario,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${ this.url }/accounts:signUp?key=${ this.apiKey }`,
+      authData
+    );
+  }
 }
